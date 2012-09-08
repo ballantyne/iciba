@@ -1,0 +1,33 @@
+#!/usr/bin/env ruby
+
+require 'iciba'
+require 'optparse'
+require 'fileutils'
+
+OptionParser.new do |opts|
+  opts.banner = "Usage: #{File.basename($0)} ('words'|word)"
+
+  opts.on("-h", "--help", "go to fy.iciba.com") do
+    puts opts
+    exit 0
+  end
+
+  begin
+    opts.parse!(ARGV)
+  rescue OptionParser::ParseError => e
+    warn e.message
+    puts opts
+    exit 1
+  end
+end
+
+
+if ARGV.empty?
+  abort "Enter some words to lookup!iciba"
+end
+
+if ARGV.first.include?('http')
+  Iciba::Fanyi.new(ARGV.first, 'auto', true)
+else
+  Iciba::Fanyi.new(ARGV.first, 'auto', true)
+end

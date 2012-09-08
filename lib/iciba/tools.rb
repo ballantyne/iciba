@@ -1,5 +1,8 @@
+# coding: utf-8
 require 'yajl'
 require 'hashie'
+require 'curb'
+require 'nokogiri'
 module Tools
   
   def self.download(url)
@@ -35,27 +38,7 @@ module Tools
   def self.encode(data)
     Yajl::Encoder.encode(data)
   end
-  
-  def self.abbr(chinese_word)
-    pinyin = Pinyin.t(chinese_word)
-    abbr = ''
-    pinyin.split(' ').each do |word_part|
-      abbr += word_part.split("").first
-    end
-    abbr
-  end
-  
-  def self.absolute_link(domain, link)
-    if link.to_s.match(/^\//)
-      'http://' + domain + link
-    else
-      link
-    end
-  end
-  
-  def self.convert_vname(string)
-    string.split(/([[:upper:]][[:lower:]]*)/).delete_if(&:empty?).join("_").downcase.scan(/\d+|[a-zA-Z]+/).join("_").to_sym
-  end
+
   
   def self.sleep_time
     array_of_numbers = [1.2, 2.35, 2.45, 1.3, 1.4, 1.5, 1.6, 1.7, 1.8, 1.9, 2.1, 1.4]
@@ -65,20 +48,6 @@ module Tools
   
   def self.hashify(source)
     Digest::SHA1.hexdigest(source)
-  end
-  
-  def self.decode(string, to="UTF-8//IGNORE")
-    # @e = UniversalDetector::chardet(string)    
-    # unless @e["encoding"] == "utf8"
-    #   begin
-    #     puts @e["encoding"]
-    #     string = Iconv.new(to, @e["encoding"]).iconv(string)
-    #   rescue
-    #     puts "the universal detector failed...  "
-    #     return string
-    #   end
-    # end
-    string
   end
   
   def self.user_agent
@@ -97,12 +66,7 @@ module Tools
     random_number
   end
   
-  def self.domainatrix(url)
-    Domainatrix.parse(url)
-  end
-  
   def self.doc(html)
     Nokogiri::HTML(html)
   end
-  
 end
