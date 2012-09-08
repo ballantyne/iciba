@@ -7,7 +7,7 @@ module Iciba
 
     def initialize(words, dir='auto', bin=false)
       puts '------------------------------------------------------------------------------------' if bin
-      # puts if bin
+      # puts if bingit 
       puts wrap_text(words, 40)
       puts '------------------------------------------------------------------------------------' if bin
       download_and_parse(words, dir)

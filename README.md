@@ -1,6 +1,6 @@
 # Iciba
 
-TODO: Write a gem description
+A command-line/ruby tool to translate chinese using fy.iciba.com
 
 ## Installation
 
@@ -15,8 +15,15 @@ And then execute:
 Or install it yourself as:
 
     $ gem install iciba
+    
+Command-line usage:
 
-## Usage
+    $ fy 'words to be translated'
+    
+Ruby usage:
+    
+    require 'iciba'
+    Iciba::Fanyi.new('words to be translated')
 
 TODO: Write usage instructions here
 
