@@ -27,8 +27,6 @@ Ruby usage:
     require 'iciba'
     Iciba::Fanyi.new('words to be translated')
 
-TODO: Write usage instructions here
-
 ## Contributing
 
 1. Fork it
