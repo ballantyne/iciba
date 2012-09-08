@@ -2,11 +2,14 @@
 
 require 'iciba'
 require 'optparse'
+require 'readability'
 require 'fileutils'
+$links = false
 
 OptionParser.new do |opts|
   opts.banner = "Usage: #{File.basename($0)} ('words'|word)"
-
+  opts.on("-l", "--links", "Download links?")  { |b| $links = true }
+  opts.on("-i", "--interactive", "Download links?")  { |b| $interactive = true }
   opts.on("-h", "--help", "go to fy.iciba.com") do
     puts opts
     exit 0
@@ -22,12 +25,25 @@ OptionParser.new do |opts|
 end
 
 
-if ARGV.empty?
-  abort "Enter some words to lookup!iciba"
+def wrap_text(txt, col = 80)
+  txt.gsub(/(.{1,#{col}})( +|$\n?)|(.{1,#{col}})/,
+    "\\1\\3\n") 
 end
 
-if ARGV.first.include?('http')
-  Iciba::Fanyi.new(ARGV.first, 'auto', true)
-else
-  Iciba::Fanyi.new(ARGV.first, 'auto', true)
+if ARGV.empty?
+  abort "Enter some words to lookup!"
 end
+
+regex = /https?:\/\/[\S]+/
+links = ARGV.first.scan(regex)
+
+def loop_through_links(links)
+  links.each do |l|
+    text = Readability::Document.new(Iciba::Tools.download(l)).content.gsub('<p>', '').gsub('</p>', "\r\n").gsub('</div></div>', '').gsub('<div><div>', '')
+    puts wrap_text(text) unless text == ''
+    puts '------------------------------------------------------------------------------------' unless text == ''
+  end
+end
+
+Iciba::Fanyi.new(ARGV.first, 'auto', true)
+loop_through_links(links) if ($links && links.size > 0)
