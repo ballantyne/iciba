@@ -26,4 +26,4 @@ if ARGV.empty?
   abort "Please specify a word to lookup."
 end
 
-Iciba.new(ARGV.first)
+Iciba::Iciba.new(ARGV.first)
