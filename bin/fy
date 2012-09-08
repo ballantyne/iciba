@@ -25,7 +25,6 @@ OptionParser.new do |opts|
   end
 end
 
-
 def wrap_text(txt, col = 80)
   txt.gsub(/(.{1,#{col}})( +|$\n?)|(.{1,#{col}})/,
     "\\1\\3\n") 
@@ -33,6 +32,9 @@ end
 
 if ARGV.empty?
   abort "Enter some words to lookup!"
+elsif ARGV.first == 'open'
+  `open http://fy.iciba.com`
+  abort "opening http://fy.iciba.com"
 end
 
 regex = /https?:\/\/[\S]+/
@@ -41,7 +43,7 @@ links = ARGV.first.scan(regex)
 def loop_through_links(links)
   puts links.inspect
   links.each do |l|
-    text = Readability::Document.new(Iciba::Tools.download(l).force_encoding("UTF-8")).content.gsub('<p>', '').gsub('</p>', "\r\n").gsub('</div></div>', '').gsub('<div><div>', '')
+    text = Readability::Document.new(Iciba::Tools.download(l).force_encoding("UTF-8")).content.gsub('<p>', '').gsub('</p>', "\r\n").gsub('</div>', '').gsub('<div>', '')
     puts wrap_text(text) unless text == ''
     puts '------------------------------------------------------------------------------------' unless text == ''
   end
