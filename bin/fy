@@ -39,8 +39,9 @@ regex = /https?:\/\/[\S]+/
 links = ARGV.first.scan(regex)
 
 def loop_through_links(links)
+  puts links.inspect
   links.each do |l|
-    text = Readability::Document.new(Iciba::Tools.download(l)).content.gsub('<p>', '').gsub('</p>', "\r\n").gsub('</div></div>', '').gsub('<div><div>', '')
+    text = Readability::Document.new(Iciba::Tools.download(l).force_encoding("UTF-8")).content.gsub('<p>', '').gsub('</p>', "\r\n").gsub('</div></div>', '').gsub('<div><div>', '')
     puts wrap_text(text) unless text == ''
     puts '------------------------------------------------------------------------------------' unless text == ''
   end

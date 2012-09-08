@@ -24,7 +24,7 @@ module Iciba
   
     def download_and_parse(words, dir, extended)
       self.response = Iciba::Tools.parse(Iciba::Tools.post('http://fy.iciba.com/api.php', {:q => words, :type => dir}).body_str)
-      self.html = self.response.ret
+      self.html = self.response.ret.force_encoding("UTF-8")
       self.result = (Iciba::Tools.doc(self.html)/'span.dd').text.strip
       self.result = self.html if self.result == ""
       self.result = self.result.split('，')[0] if self.result.include?('，') unless extended

@@ -21,6 +21,9 @@ Or install it yourself as:
 Command-line usage:
 
     $ fy 'words to be translated'
+    $ fy 'english' # for single word answers
+    $ fy 'english' -e for complete definition if available
+    $ fy 'words to be translated' -l
     
 Ruby usage:
     
