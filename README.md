@@ -15,7 +15,9 @@ And then execute:
 Or install it yourself as:
 
     $ gem install iciba
-    
+
+## Usage
+
 Command-line usage:
 
     $ fy 'words to be translated'
