@@ -22,13 +22,14 @@ Command-line usage:
 
     $ fy 'words to be translated'
     $ fy 'english' # for single word answers
-    $ fy 'english' -e for complete definition if available
-    $ fy http://www.chinadaily.com.cn/business/2012-09/07/content_15742188.htm -l
+    $ fy 'english' -e #for complete definition if available
+    $ fy http://www.chinadaily.com.cn/business/2012-09/07/content_15742188.htm -l #to download links
+    $ fy http://www.chinadaily.com.cn/business/2012-09/07/content_15742188.htm -l -r #to translate the links
     
 Ruby usage:
     
     require 'iciba'
-    Iciba::Fanyi.new('words to be translated')
+    Iciba::Fanyi.new('words to be translated').result
 
 ## Contributing
 

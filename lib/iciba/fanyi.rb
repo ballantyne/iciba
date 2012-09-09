@@ -8,8 +8,8 @@ module Iciba
     def initialize(words, dir='auto', bin=false, extended=false)
       puts '------------------------------------------------------------------------------------' if bin
       # puts if bingit 
-      puts wrap_text(words, 40) if check_char(words) if bin
-      puts wrap_text(words) unless check_char(words) if bin
+      puts wrap_text(words, 40) if words.contains_cjk? && bin
+      puts wrap_text(words) unless words.contains_cjk? && bin
       puts '------------------------------------------------------------------------------------' if bin
       download_and_parse(words, dir, extended)
       puts wrap_text(self.result) if bin
@@ -22,7 +22,7 @@ module Iciba
         "\\1\\3\n") 
     end
     
-    def check_char(str)
+    def self.check_char(str)
       str.contains_cjk?
     end
   
