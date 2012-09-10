@@ -21,7 +21,7 @@ Or install it yourself as:
 Command-line usage:
 
     $ fy words to be translated
-    $ fy english -e #for complete definition if available
+    $ fy english -s #for first word to be returned
     $ fy You will need to have root access to do this. -p #to get pinyin for chinese characters, (hopefully fy.iciba.com is correct)
     $ fy http://www.chinadaily.com.cn/business/2012-09/07/content_15742188.htm -l #to download links
     
