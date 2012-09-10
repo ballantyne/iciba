@@ -9,6 +9,7 @@ module Iciba
     def initialize(words, dir='auto', bin=false, extended=false, pinyin=false)
       puts '------------------------------------------------------------------------------------' if bin
       # puts if bingit 
+      words = words.dup.force_encoding("UTF-8")
       puts wrap_text(words, 40) if words.contains_cjk? && bin
       puts wrap_text(words) unless words.contains_cjk? && bin
       # puts '------------------------------------------------------------------------------------' if words.contains_cjk? && bin && pinyin
@@ -23,11 +24,13 @@ module Iciba
     end
     
     def wrap_text(txt, col = 80)
+      txt = txt.dup.force_encoding("UTF-8")
       txt.gsub(/(.{1,#{col}})( +|$\n?)|(.{1,#{col}})/,
         "\\1\\3\n") 
     end
     
     def self.check_char(str)
+      str = str.dup.force_encoding("UTF-8")
       str.contains_cjk?
     end
     

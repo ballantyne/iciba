@@ -54,5 +54,5 @@ end
 pinyin = ($pinyin ? true : false)
 extended = ($extended ? true : false)
 
-Iciba::Fanyi.new(ARGV.first, 'auto', true, extended, pinyin)
+Iciba::Fanyi.new(ARGV.first.dup.force_encoding("UTF-8"), 'auto', true, extended, pinyin)
 loop_through_links(links) if ($links && links.size > 0)
