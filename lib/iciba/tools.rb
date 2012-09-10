@@ -3,6 +3,7 @@ require 'yajl'
 require 'hashie'
 require 'curb'
 require 'nokogiri'
+require 'hpricot'
 module Iciba
   module Tools
 
@@ -68,7 +69,7 @@ module Iciba
     end
 
     def self.doc(html)
-      Nokogiri::HTML(html)
+      Hpricot(html)
     end
   end
 end

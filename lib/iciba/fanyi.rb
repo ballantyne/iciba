@@ -1,5 +1,6 @@
 # coding: utf-8
 require 'string_to_pinyin'
+
 module Iciba
   class Fanyi
     attr_accessor :response, :html, :dir, :result
