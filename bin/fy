@@ -11,6 +11,7 @@ OptionParser.new do |opts|
   opts.on("-l", "--links", "Download links?")  { |b| $links = true }
   opts.on("-i", "--interactive", "Download links?")  { |b| $interactive = true }
   opts.on("-e", "--extended", "Extended")  { |b| $extended = true }
+  opts.on("-p", "--pinyin", "Pinyin")  { |b| $pinyin = true }
   opts.on("-h", "--help", "go to fy.iciba.com") do
     puts opts
     exit 0
@@ -50,7 +51,8 @@ def loop_through_links(links)
   end
 end
 
+pinyin = ($pinyin ? true : false)
 extended = ($extended ? true : false)
 
-Iciba::Fanyi.new(ARGV.first, 'auto', true, extended)
+Iciba::Fanyi.new(ARGV.first, 'auto', true, extended, pinyin)
 loop_through_links(links) if ($links && links.size > 0)
