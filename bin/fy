@@ -10,10 +10,10 @@ $links = false
 OptionParser.new do |opts|
   opts.banner = "Usage: #{File.basename($0)} ('words'|word)"
   opts.on("-l", "--links", "Download links?")  { |b| $links = true }
-  opts.on("-i", "--interactive", "Download links?")  { |b| $interactive = true }
   opts.on("-e", "--extended", "Extended")  { |b| $extended = true }
   opts.on("-p", "--pinyin", "Pinyin")  { |b| $pinyin = true }
-  opts.on("-h", "--help", "go to fy.iciba.com") do
+  opts.on("-o", "--open", "go to fy.iciba.com")  { |b| $pinyin = true }
+  opts.on("-h", "--help", "Print") do
     puts opts
     exit 0
   end
@@ -53,9 +53,9 @@ def loop_through_links(links)
     puts '------------------------------------------------------------------------------------' unless text == ''
   end
 end
-
+# puts ARGV.join(' ')
 pinyin = ($pinyin ? true : false)
 extended = ($extended ? true : false)
-
-Iciba::Fanyi.new(ARGV.first.dup.force_encoding("UTF-8"), 'auto', true, extended, pinyin)
+input_text = ARGV.join(' ').dup.encode("UTF-8")
+Iciba::Fanyi.new(input_text, 'auto', true, extended, pinyin)
 loop_through_links(links) if ($links && links.size > 0)
