@@ -2,8 +2,9 @@
 require "iciba/version"
 require 'iciba/tools'
 require 'iciba/fanyi'
+
 class String
   def contains_cjk?
-    !!(self =~ /\p{Han}|\p{Katakana}|\p{Hiragana}|\p{Hangul}/)
+    !!(self =~ /\p{Han}/)
   end
 end
