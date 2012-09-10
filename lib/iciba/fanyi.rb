@@ -11,7 +11,7 @@ module Iciba
       # puts if bingit 
       puts wrap_text(words, 40) if words.contains_cjk? && bin
       puts wrap_text(words) unless words.contains_cjk? && bin
-      puts '------------------------------------------------------------------------------------' if words.contains_cjk? && bin && pinyin
+      # puts '------------------------------------------------------------------------------------' if words.contains_cjk? && bin && pinyin
       puts words.to_pinyin if words.contains_cjk? && bin && pinyin
       puts '------------------------------------------------------------------------------------' if bin
       download_and_parse(words, dir, extended)
