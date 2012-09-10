@@ -3,7 +3,7 @@ require 'yajl'
 require 'hashie'
 require 'curb'
 require 'nokogiri'
-require 'hpricot'``
+require 'hpricot'
 module Iciba
   module Tools
 

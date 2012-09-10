@@ -19,7 +19,7 @@ module Iciba
       download_and_parse(words, dir, extended)
       puts wrap_text(self.result) if logs
       puts if self.result.contains_cjk? && logs && pinyin
-      puts wrap_text(self.result.strip.gsub("\r\n", '|newline|').to_pinyin.gsub('|newline|', "\r\n\r\n"), 40) if self.result.contains_cjk? && pinyin && bin
+      puts wrap_text(self.result.strip.gsub("\r\n", '|newline|').to_pinyin.gsub('|newline|', "\r\n\r\n"), 40) if self.result.contains_cjk? && pinyin && logs
       puts '------------------------------------------------------------------------------------' if logs
       return self.result
     end
