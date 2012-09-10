@@ -6,20 +6,20 @@ module Iciba
 
     
 
-    def initialize(words, dir='auto', bin=false, extended=false, pinyin=false)
-      puts '------------------------------------------------------------------------------------' if bin
+    def initialize(words, dir='auto', logs=false, extended=false, pinyin=false)
+      puts '------------------------------------------------------------------------------------' if logs
       # puts if bingit 
       words = words.dup.force_encoding("UTF-8")
-      puts wrap_text(words, 40) if words.contains_cjk? && bin
-      puts wrap_text(words) unless words.contains_cjk? && bin
+      puts wrap_text(words, 40) if words.contains_cjk? && logs
+      puts wrap_text(words) unless words.contains_cjk? && logs
       # puts '------------------------------------------------------------------------------------' if words.contains_cjk? && bin && pinyin
-      puts words.to_pinyin if words.contains_cjk? && bin && pinyin
-      puts '------------------------------------------------------------------------------------' if bin
+      puts words.to_pinyin if words.contains_cjk? && logs && pinyin
+      puts '------------------------------------------------------------------------------------' if logs
       download_and_parse(words, dir, extended)
-      puts wrap_text(self.result) if bin
-      puts if self.result.contains_cjk? && bin && pinyin
+      puts wrap_text(self.result) if logs
+      puts if self.result.contains_cjk? && logs && pinyin
       puts wrap_text(self.result.strip.gsub("\r\n", '|newline|').to_pinyin.gsub('|newline|', "\r\n\r\n"), 40) if self.result.contains_cjk? && pinyin && bin
-      puts '------------------------------------------------------------------------------------' if bin
+      puts '------------------------------------------------------------------------------------' if logs
       return self.result
     end
     
