@@ -5,8 +5,6 @@ module Iciba
   class Fanyi
     attr_accessor :response, :html, :dir, :result
 
-    
-
     def initialize(words, dir='auto', logs=false, extended=false, pinyin=false)
       puts '------------------------------------------------------------------------------------' if logs
       # puts if bingit 
@@ -47,7 +45,7 @@ module Iciba
     def download_and_parse(words, dir, extended)
       self.response = Iciba::Tools.parse(Iciba::Tools.post('http://fy.iciba.com/api.php', {:q => words, :type => dir}).body_str)
       self.html = self.response.ret.encode("UTF-8")
-      self.result = (Iciba::Tools.doc(self.html)/'span.dd').text.strip
+      self.result = (Iciba::Tools.doc(self.html)/'div.translate_result').text.strip
       self.result = self.html if self.result == ""
       self.result = self.result.split('，')[0] if self.result.include?('，') unless extended
       self.result = self.result.split('；')[0] if self.result.include?('；') unless extended
