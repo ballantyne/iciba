@@ -2,7 +2,6 @@
 
 require 'iciba'
 require 'optparse'
-require 'readability'
 require 'fileutils'
 
 $links = false
@@ -46,17 +45,8 @@ end
 regex = /https?:\/\/[\S]+/
 links = ARGV.first.scan(regex)
 
-def loop_through_links(links)
-  puts links.inspect
-  links.each do |l|
-    text = Readability::Document.new(Iciba::Tools.download(l).force_encoding("UTF-8")).content.gsub('<p>', '').gsub('</p>', "\r\n").gsub('</div>', '').gsub('<div>', '')
-    puts wrap_text(text) unless text == ''
-    puts '------------------------------------------------------------------------------------' unless text == ''
-  end
-end
 # puts ARGV.join(' ')
 pinyin = ($pinyin ? true : false)
 extended = ($extended ? true : false)
 input_text = ARGV.join(' ').dup.encode("UTF-8")
 Iciba::Fanyi.new(input_text, 'auto', true, extended, pinyin)
-loop_through_links(links) if ($links && links.size > 0)

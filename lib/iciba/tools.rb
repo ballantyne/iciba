@@ -1,8 +1,7 @@
 # coding: utf-8
-require 'yajl'
+require 'multi_json'
 require 'hashie'
 require 'rest_client'
-require 'nokogiri'
 require 'hpricot'
 module Iciba
   module Tools
@@ -13,11 +12,11 @@ module Iciba
     end
 
     def self.parse(data)
-      Hashie::Mash.new Yajl::Parser.new.parse(data)
+      Hashie::Mash.new MultiJson.load(data)
     end
 
     def self.encode(data)
-      Yajl::Encoder.encode(data)
+      MultiJson.dump(data)
     end
 
 

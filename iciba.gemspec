@@ -17,10 +17,8 @@ Gem::Specification.new do |gem|
   # gem.add_dependency(%q<curb>, [">= 0"])
   gem.add_dependency('rest-client')
   gem.add_dependency(%q<hashie>, [">= 0"])
-  gem.add_dependency(%q<yajl-ruby>, [">= 0"])
-  gem.add_dependency(%q<nokogiri>, [">= 0"])
+  gem.add_dependency(%q<multi_json>, [">= 0"])
   gem.add_dependency(%q<hpricot>, [">= 0"])
-  gem.add_dependency(%q<ruby-readability>, [">= 0"])
   gem.add_dependency(%q<string_to_pinyin>, ['>= 0'])
   gem.add_development_dependency(%q<pry>, ['>= 0'])
 end
