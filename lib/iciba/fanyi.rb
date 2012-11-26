@@ -43,7 +43,7 @@ module Iciba
   
   
     def download_and_parse(words, dir, extended)
-      self.response = Iciba::Tools.parse(Iciba::Tools.post('http://fy.iciba.com/api.php', {:q => words, :type => dir}).body_str)
+      self.response = Iciba::Tools.parse(Iciba::Tools.post('http://fy.iciba.com/api.php', {:q => words, :type => dir}))
       self.html = self.response.ret.encode("UTF-8")
       self.result = (Iciba::Tools.doc(self.html)/'div.translate_result').text.strip if self.html.include?('translate_result')
       self.result = (Iciba::Tools.doc(self.html)/'span.dd').text.strip if !self.html.include?('translate_result')

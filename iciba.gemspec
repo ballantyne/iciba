@@ -14,7 +14,8 @@ Gem::Specification.new do |gem|
   gem.name          = "iciba"
   gem.require_paths = ["lib"]
   gem.version       = Iciba::VERSION
-  gem.add_dependency(%q<curb>, [">= 0"])
+  # gem.add_dependency(%q<curb>, [">= 0"])
+  gem.add_dependency('rest-client')
   gem.add_dependency(%q<hashie>, [">= 0"])
   gem.add_dependency(%q<yajl-ruby>, [">= 0"])
   gem.add_dependency(%q<nokogiri>, [">= 0"])

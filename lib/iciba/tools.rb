@@ -1,36 +1,15 @@
 # coding: utf-8
 require 'yajl'
 require 'hashie'
-require 'curb'
+require 'rest_client'
 require 'nokogiri'
 require 'hpricot'
 module Iciba
   module Tools
 
-    def self.download(url)
-      c = self.curb(url)
-      c.body_str
-    end
-
     def self.post(url, options)
-      Curl.post(url, options)
-    end
-
-    def self.last_effective_url(url)
-      c = self.curb(url)
-      c.last_effective_url
-    end
-
-    def self.curb(url)
-      c = Curl::Easy.new(url) do |curl| 
-        curl.headers["User-Agent"] = user_agent
-        # curl.verbose = true
-        curl.timeout = 120
-        curl.follow_location = true
-        curl.max_redirects = 20
-      end
-      c.perform
-      c
+      options = options.merge(:user_agent => user_agent)
+      RestClient.post url, options
     end
 
     def self.parse(data)
