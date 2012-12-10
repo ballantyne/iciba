@@ -4,8 +4,8 @@ require File.expand_path('../lib/iciba/version', __FILE__)
 Gem::Specification.new do |gem|
   gem.authors       = ["Scott Ballantyne"]
   gem.email         = ["ussballantyne@gmail.com"]
-  gem.description   = %q{iciba wrapper}
-  gem.summary       = %q{iciba wrapper}
+  gem.description   = %q{iciba dictionary search wrapper}
+  gem.summary       = %q{iciba dictionary search wrapper}
   gem.homepage      = ""
 
   gem.files         = `git ls-files`.split($\)
@@ -14,7 +14,6 @@ Gem::Specification.new do |gem|
   gem.name          = "iciba"
   gem.require_paths = ["lib"]
   gem.version       = Iciba::VERSION
-  # gem.add_dependency(%q<curb>, [">= 0"])
   gem.add_dependency('rest-client')
   gem.add_dependency(%q<hashie>, [">= 0"])
   gem.add_dependency(%q<multi_json>, [">= 0"])
