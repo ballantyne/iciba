@@ -1,10 +1,9 @@
 # coding: utf-8
-require "iciba/version"
 require 'iciba/tools'
 require 'iciba/fanyi'
 
 class String
   def contains_cjk?
-    !!(self =~ /\p{Han}/)
+    !!(self.force_encoding("UTF-8") =~ /\p{Han}/)
   end
 end
