@@ -9,7 +9,6 @@ $extended = true
 
 OptionParser.new do |opts|
   opts.banner = "Usage: #{File.basename($0)} ('words'|word)"
-  opts.on("-l", "--links", "Download links?")  { |b| $links = true }
   opts.on("-s", "--single", "Single word")  { |b| $extended = false }
   opts.on("-p", "--pinyin", "Pinyin")  { |b| $pinyin = true }
   opts.on("-o", "--open", "go to fy.iciba.com")  { |b| $pinyin = true }
