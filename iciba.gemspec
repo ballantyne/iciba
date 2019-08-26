@@ -14,7 +14,7 @@ Gem::Specification.new do |gem|
   gem.name          = "iciba"
   gem.require_paths = ["lib"]
   gem.version       = Iciba::VERSION
-  gem.add_dependency('rest-client')
+  gem.add_dependency('rest-client', '2.1.0')
   gem.add_dependency(%q<hashie>, [">= 0"])
   gem.add_dependency(%q<multi_json>, [">= 0"])
   gem.add_dependency(%q<hpricot>, [">= 0"])
